@@ -18,19 +18,16 @@ public class Programa {
 	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
-		// Creating instances of Pessoa to be persisted in the database.
-		Pessoa p1 = new Pessoa(null, "Carlos da Silva", "carlos2211@gmail.com");
-		Pessoa p2 = new Pessoa(null, "Antonio Carlos", "antonioqw2@gmail.com");
-		Pessoa p3 = new Pessoa(null, "Jessica Santos", "jessicas23@gmail.com");
-
 		// Creating an EntityManagerFactory instance.
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("bd-jpa");
 		// Creating an EntityManager instance.
 		EntityManager em = emf.createEntityManager();
 
 		Pessoa p = em.find(Pessoa.class, 2);
-		System.out.println(p);
-	
+		em.getTransaction().begin();
+		em.remove(p);
+		em.getTransaction().commit();
+
 		System.out.println("Ready");
 		em.close();
 		emf.close();
