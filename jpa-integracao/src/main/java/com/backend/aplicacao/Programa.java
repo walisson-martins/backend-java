@@ -27,15 +27,12 @@ public class Programa {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("bd-jpa");
 		// Creating an EntityManager instance.
 		EntityManager em = emf.createEntityManager();
-		// Starting a transaction.
-		em.getTransaction().begin();
 
-		// Persisting the Pessoa instances in the database.
-		em.persist(p1);
-		em.persist(p2);
-		em.persist(p3);
-		// Committing the transaction.
-		em.getTransaction().commit();
+		Pessoa p = em.find(Pessoa.class, 2);
+		System.out.println(p);
+	
 		System.out.println("Ready");
+		em.close();
+		emf.close();
 	}
 }

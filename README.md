@@ -1,1 +1,1 @@
-# backend-java
+http://localhost:8080/phpmyadmin/index.php?route=/sql&db=persitenciajpa&table=pessoa&pos=0#
