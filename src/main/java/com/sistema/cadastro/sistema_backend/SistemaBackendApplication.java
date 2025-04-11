@@ -22,6 +22,7 @@ public class SistemaBackendApplication implements CommandLineRunner {
 	private ProdutoRepository produtoRepository;
 
 	public static void main(String[] args) {
+		
 		SpringApplication.run(SistemaBackendApplication.class, args);
 	}
 
