@@ -13,6 +13,7 @@ import com.sistema.cadastro.sistema_backend.domain.Cidade;
 import com.sistema.cadastro.sistema_backend.domain.Cliente;
 import com.sistema.cadastro.sistema_backend.domain.Endereco;
 import com.sistema.cadastro.sistema_backend.domain.Estado;
+import com.sistema.cadastro.sistema_backend.domain.ItemPedido;
 import com.sistema.cadastro.sistema_backend.domain.Pagamento;
 import com.sistema.cadastro.sistema_backend.domain.PagamentoComBoleto;
 import com.sistema.cadastro.sistema_backend.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.sistema.cadastro.sistema_backend.repositories.CidadeRepository;
 import com.sistema.cadastro.sistema_backend.repositories.ClienteRepository;
 import com.sistema.cadastro.sistema_backend.repositories.EnderecoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.EstadoRepository;
+import com.sistema.cadastro.sistema_backend.repositories.ItemPedidoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.PagamentoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.PedidoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class SistemaBackendApplication implements CommandLineRunner {
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaBackendApplication.class, args);
@@ -93,6 +98,17 @@ public class SistemaBackendApplication implements CommandLineRunner {
 		pedido1.setPagamento(pagto1);
 		pedido2.setPagamento(pagto2);
 
+		ItemPedido itemPedido1 = new ItemPedido(pedido1, p1, 0.00, 1, 2000.00);
+		ItemPedido itemPedido2 = new ItemPedido(pedido1, p3, 0.00, 2, 80.00);
+		ItemPedido itemPedido3 = new ItemPedido(pedido2, p2, 100.00, 1, 800.00);
+
+		pedido1.getItens().addAll(Arrays.asList(itemPedido1, itemPedido2));
+		pedido2.getItens().addAll(Arrays.asList(itemPedido3));
+
+		p1.getItens().addAll(Arrays.asList(itemPedido1));
+		p2.getItens().addAll(Arrays.asList(itemPedido3));
+		p3.getItens().addAll(Arrays.asList(itemPedido2));
+
 		cli1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
@@ -116,6 +132,7 @@ public class SistemaBackendApplication implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 	}
 
 }
