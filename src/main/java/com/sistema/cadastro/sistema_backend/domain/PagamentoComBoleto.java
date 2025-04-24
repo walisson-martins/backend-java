@@ -2,6 +2,7 @@ package com.sistema.cadastro.sistema_backend.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sistema.cadastro.sistema_backend.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -9,8 +10,11 @@ import jakarta.persistence.Entity;
 @Entity
 public class PagamentoComBoleto extends Pagamento {
     private static final long serialVersionUID = 1L;
-    
+
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private Date dataPagamento;
+
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private Date dataVencimento;
 
     public PagamentoComBoleto() {

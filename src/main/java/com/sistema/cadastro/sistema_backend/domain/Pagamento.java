@@ -2,6 +2,7 @@ package com.sistema.cadastro.sistema_backend.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sistema.cadastro.sistema_backend.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -21,6 +22,7 @@ public abstract class Pagamento implements Serializable {
     private Integer id;
     private Integer estado;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
