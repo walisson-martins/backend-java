@@ -22,7 +22,7 @@ public class PedidoResource {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Optional<Pedido>> find(@PathVariable Integer id) {
 
-        Optional<Pedido> obj = service.buscar(id);
+        Optional<Pedido> obj = service.find(id);
 
         return ResponseEntity.ok().body(obj);
     }
