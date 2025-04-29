@@ -33,10 +33,11 @@ public class CategoriaService {
         obj.setId(null);
         return repo.save(obj);
     }
-
+    
     public Categoria update(Categoria obj) {
-        find(obj.getId());
-        return repo.save(obj);
+        Optional<Categoria> newObj = find(obj.getId());
+        updateData(newObj, Optional.of(obj));
+        return repo.save(newObj.orElseThrow(() -> new ObjectNotFoundException("Categoria não encontrado")));
     }
 
     public void delete(Integer id) {
@@ -59,5 +60,11 @@ public class CategoriaService {
 
     public Categoria fromDto(CategoriaDTO objDto) {
         return new Categoria(objDto.getId(), objDto.getNome());
+    }
+
+    private void updateData(Optional<Categoria> newObj, Optional<Categoria> obj) {
+        Categoria newCategoria = newObj.orElseThrow(() -> new ObjectNotFoundException("Categoria não encontrado"));
+        Categoria categoria = obj.orElseThrow(() -> new ObjectNotFoundException("Categoria não encontrado"));
+        newCategoria.setNome(categoria.getNome());
     }
 }
