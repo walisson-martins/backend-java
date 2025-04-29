@@ -30,7 +30,6 @@ import com.sistema.cadastro.sistema_backend.repositories.ItemPedidoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.PagamentoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.PedidoRepository;
 import com.sistema.cadastro.sistema_backend.repositories.ProdutoRepository;
-
 @SpringBootApplication
 public class SistemaBackendApplication implements CommandLineRunner {
 
@@ -71,6 +70,11 @@ public class SistemaBackendApplication implements CommandLineRunner {
 
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
+		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
+		Categoria cat4 = new Categoria(null, "Máquina de lavar");
+		Categoria cat5 = new Categoria(null, "Eletrônicos");
+		Categoria cat6 = new Categoria(null, "Video Game");
+		Categoria cat7 = new Categoria(null, "Sofá");
 
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Notebook", 800.00);
@@ -124,7 +128,7 @@ public class SistemaBackendApplication implements CommandLineRunner {
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
 
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5,cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
