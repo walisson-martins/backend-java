@@ -1,7 +1,5 @@
 package com.sistema.cadastro.sistema_backend.resource.exceptions;
-
 import java.io.Serializable;
-
 public class StandartError implements Serializable {
     private static final long serialVersionUID = 1L;
 
